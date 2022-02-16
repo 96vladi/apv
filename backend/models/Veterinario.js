@@ -4,11 +4,11 @@ const veterinarioSchema = mongoose.Schema({
   nombre: {
     type: String,
     require: true,
-    trim: true
+    trim: true,
   },
   password: {
     type: String,
-    require: true
+    require: true,
   },
   email: {
     type: String,
@@ -19,21 +19,21 @@ const veterinarioSchema = mongoose.Schema({
   phone: {
     type: String,
     default: null,
-    trim: true
+    trim: true,
   },
-  wem: {
-    type: null,
-    default: null
+  web: {
+    type: String,
+    default: null,
   },
   token: {
-    type: String
+    type: String,
   },
   confirmed: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 });
 
-const Veterinario = mongoose.model("Veterinario", veterinarioSchema);
+const Veterinario = mongoose.model('Veterinario', veterinarioSchema);
 
 export default Veterinario;
