@@ -1,6 +1,7 @@
 import Veterinario from "../models/Veterinario.js";
 import jwt from 'jsonwebtoken';
 import generarJWT from "../helpers/generarJWT.js";
+import generarId from "../helpers/generarId.js";
 
 const registrar = async (req, res) => {
   const { email } = req.body;
@@ -76,7 +77,28 @@ const autenticar = async (req, res) => {
   }
 };
 
-const olvidePassword = (req, res) => {
+const olvidePassword = async (req, res) => {
+  const { email } = req.body;
+  const existeVeterinario = await Veterinario.findOne({email});
+  if(!existeVeterinario){
+    const error = new Error('El usuario no existe');
+    return res.status(400).json({msg: error.message});
+  }
+
+  try {
+    existeVeterinario.token = generarId();
+    await existeVeterinario.save();
+    res.json({msg: 'Emos enviado un email con las instrucciones'});
+  } catch (error) {
+    
+  }
+};
+
+const comprobarToken = (req, res) => {
+
+};
+
+const nuevoPassword = (req, res) => {
 
 };
 
@@ -85,5 +107,7 @@ export {
   perfil,
   confirmar,
   autenticar,
-  olvidePassword
+  olvidePassword,
+  comprobarToken,
+  nuevoPassword
 };
