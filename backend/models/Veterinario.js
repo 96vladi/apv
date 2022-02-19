@@ -39,6 +39,7 @@ const veterinarioSchema = mongoose.Schema({
 });
 
 //Usamos funcion para que el this no sea global y solo para el bjeto actual
+//Aqui hasheamos el password
 veterinarioSchema.pre('save', async function(next){
   if(!this.isModified('password')){
     next();

@@ -78,7 +78,7 @@ const autenticar = async (req, res) => {
 };
 
 const olvidePassword = async (req, res) => {
-  const { email } = req.body;
+  const { email } = req.body;   //informacion del formulario
   const existeVeterinario = await Veterinario.findOne({email});
   if(!existeVeterinario){
     const error = new Error('El usuario no existe');
@@ -94,12 +94,37 @@ const olvidePassword = async (req, res) => {
   }
 };
 
-const comprobarToken = (req, res) => {
-
+const comprobarToken = async (req, res) => {
+  const { token } = req.params;  //informacion de la URL
+  const tokenValido = await Veterinario.findOne({token});
+  if(tokenValido){
+    //EL token es valido
+    res.json({msg: 'Token valido y el usuario existe'});
+  } else {
+    const error = new Error('Token no valido');
+    return res.status(400).json({msg: error.message});
+  }
 };
 
-const nuevoPassword = (req, res) => {
+const nuevoPassword = async (req, res) => {
+  const { token } = req.params;
+  const { password } = req.body;
 
+  const veterinario = await Veterinario.findOne({token});
+  if(!veterinario){
+    const error = new Error('Hubo un error');
+    return res.status(400).json(({msg: error.message}));
+  }
+
+  try {
+    veterinario.token = null;
+    veterinario.password = password;
+    console.log(veterinario);
+    await veterinario.save();
+    res.json({msg: 'Password modificado correctamente'});
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 export {
