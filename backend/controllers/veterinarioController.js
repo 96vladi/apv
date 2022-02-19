@@ -1,4 +1,6 @@
 import Veterinario from "../models/Veterinario.js";
+import jwt from 'jsonwebtoken';
+import generarJWT from "../helpers/generarJWT.js";
 
 const registrar = async (req, res) => {
   const { email } = req.body;
@@ -24,7 +26,8 @@ const registrar = async (req, res) => {
 };
 
 const perfil =  (req, res) => {
-  res.json( {msg : 'mostrando perfil'});
+  const { veterinario } = req;
+  res.json( {perfil : veterinario});
 }
 
 const confirmar = async (req, res) => {
@@ -64,30 +67,23 @@ const autenticar = async (req, res) => {
   //Autenticar al usuario
   //Revisar el password
   if(await usuario.comprobarPassword(password)){
-    console.log('password correcto');
+    // console.log('password correcto');
+    console.log(usuario)
+    res.json({token: generarJWT(usuario.id)})
   } else {
     const error = new Error('El password es incorrecto');
     return res.status(403).json({msg: error.message});
   }
 };
 
+const olvidePassword = (req, res) => {
+
+};
+
 export {
   registrar,
   perfil,
   confirmar,
-  autenticar
+  autenticar,
+  olvidePassword
 };
-
-
-
-// const registrar = async (req, res) => {
-//   try {
-//     //guardar un nuevo veterinario
-//     const veterinario = new Veterinario(req.body);
-//     const veterinarioGuardado = await veterinario.save();
-//     res.json({msg: 'Registrando usuario...'});
-//   } catch (error) {
-//     console.log(`El error es : ${error}`);
-//   }
-  
-// };
