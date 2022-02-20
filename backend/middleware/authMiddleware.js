@@ -3,6 +3,7 @@ import Veterinario from '../models/Veterinario.js';
 
 const checkAuth = async (req, res, next) => {
   // console.log(req.headers.authorization);
+
   if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
     let token;
     try {
@@ -15,12 +16,10 @@ const checkAuth = async (req, res, next) => {
       res.status(403).json({msg: e.message});
     }
   }
-
   if(!token){
     const error = new Error('Token no valido o inexistente');
     return res.status(403).json({msg: error.message});
   }
-
   next();
 };
 
