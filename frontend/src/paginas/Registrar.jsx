@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+import { Alerta } from '../components/Alerta';
 
 export const Registrar = () => {
 
@@ -8,23 +9,27 @@ export const Registrar = () => {
   const [ password, setPassword ] = useState('');
   const [ repetirPassword, setrepetirPassword ] = useState('');
 
+  const [ alerta, setAlerta ] = useState({})
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if ([nombre, email, password, repetirPassword].includes('')) {
-      console.log('Hay campos vacios');
+      setAlerta({msg:'Hay campos vacios', error: true});
       return;
     }
     if(password !== repetirPassword){
-      console.log('Las contraseñas no son iguales');
+      setAlerta({msg:'Las contraseñas no son iguales', error: true});
       return;
     };
     if(password.length < 6){
-      console.log('El password es muy corto, agrega minimo 6 caracteres');
+      setAlerta({msg:'El password es muy corto, agrega minimo 6 caracteres', error: true});
       return;
     };
-  
-    console.log('Despues del IF');
+    
+    // setAlerta({});
   };
+
+  const { msg } = alerta;
 
   return (
     <>
@@ -34,6 +39,12 @@ export const Registrar = () => {
         </h1>
       </div>
       <div className='mt-20 md:mt-5 shadow-lg px-5 py-10 rounded-xl bg-white'>
+
+        { 
+          msg && <Alerta 
+          alerta={alerta}/>
+        }
+
         <form 
           onSubmit={handleSubmit}
         >
