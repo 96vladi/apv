@@ -15,14 +15,26 @@ export const Registrar = () => {
     e.preventDefault();
     if ([nombre, email, password, repetirPassword].includes('')) {
       setAlerta({msg:'Hay campos vacios', error: true});
+      setTimeout(() => {
+        console.log('ya paso 2 seg')
+        setAlerta({});
+      }, 3000);
       return;
     }
     if(password !== repetirPassword){
       setAlerta({msg:'Las contraseñas no son iguales', error: true});
+      setTimeout(() => {
+        console.log('ya paso 2 seg')
+        setAlerta({});
+      }, 3000);
       return;
     };
     if(password.length < 6){
       setAlerta({msg:'El password es muy corto, agrega minimo 6 caracteres', error: true});
+      setTimeout(() => {
+        console.log('ya paso 2 seg')
+        setAlerta({});
+      }, 3000);
       return;
     };
     
@@ -44,7 +56,7 @@ export const Registrar = () => {
           msg && <Alerta 
           alerta={alerta}/>
         }
-
+          
         <form 
           onSubmit={handleSubmit}
         >
