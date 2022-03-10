@@ -141,17 +141,17 @@ export const Registrar = () => {
           />
         </form>
         <nav className='mt-10 lg:flex lg:justify-between'>
-            <Link 
-              to='/'
-              className='block text-center my-5 text-gray-500'>
-              Ya tienes una cuenta? Inicia Sesión
-            </Link>
-            <Link 
-              to='/olvide-password'
-              className='block text-center my-5 text-gray-500'>
-              Olvide mi password
-            </Link>
-          </nav>
+          <Link 
+            to='/'
+            className='block text-center my-5 text-gray-500'>
+            Ya tienes una cuenta? Inicia Sesión
+          </Link>
+          <Link 
+            to='/olvide-password'
+            className='block text-center my-5 text-gray-500'>
+            Olvide mi password
+          </Link>
+        </nav>
       </div>
     </>
   )
