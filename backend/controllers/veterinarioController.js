@@ -102,11 +102,11 @@ const olvidePassword = async (req, res) => {
     // Envias email con instrucciones 
     emailOlvidePassword({
       email,
-      nombre : existeVeterinario.nombre,
-      token : existeVeterinario.token
+      nombre: existeVeterinario.nombre,
+      token: existeVeterinario.token
     });
 
-    res.json({msg: 'Emos enviado un email con las instrucciones'});
+    res.json({msg: 'Hemos enviado un email con las instrucciones'});
   } catch (error) {
     
   }
