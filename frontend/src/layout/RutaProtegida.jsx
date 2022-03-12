@@ -17,7 +17,11 @@ export const RutaProtegida = () => {
   return (
     <>
       <Header />
-      { perfil?._id ? <Outlet /> : <Navigate to={'/'} /> }
+      { perfil?._id ? (
+        <main className='container mx-auto mt-10'>
+          <Outlet />
+        </main>
+        ) : <Navigate to={'/'} /> }
       <Footer />
     </>
   )
