@@ -9,6 +9,7 @@ import { ConfirmarCuenta } from './paginas/ConfirmarCuenta';
 import { NuevoPassword } from './paginas/NuevoPassword';
 
 import { AuthProvider } from './context/AuthProvider';
+import { PacientesProvider } from './context/PacientesProvider';
 import AdministrarPacientes from './paginas/AdministrarPacientes';
 
 
@@ -17,21 +18,23 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Routes>
-          {/* Area publica */}
-          <Route path='/' element={<AuthLayout />}>
-            <Route index element={<Login />}/>
-            <Route path='registrar' element={<Registrar />}/>
-            <Route path='olvide-password' element={<OlvidePassword />}/>
-            <Route path='olvide-password/:token' element={<NuevoPassword />}/>
-            <Route path='confirmar/:id' element={<ConfirmarCuenta />}/>
-          </Route>
+        <PacientesProvider>
+          <Routes>
+            {/* Area publica */}
+            <Route path='/' element={<AuthLayout />}>
+              <Route index element={<Login />}/>
+              <Route path='registrar' element={<Registrar />}/>
+              <Route path='olvide-password' element={<OlvidePassword />}/>
+              <Route path='olvide-password/:token' element={<NuevoPassword />}/>
+              <Route path='confirmar/:id' element={<ConfirmarCuenta />}/>
+            </Route>
 
-          {/* Area protegida */}
-          <Route path='/admin' element={<RutaProtegida />}>
-            <Route index element={<AdministrarPacientes />}/>
-          </Route>
-        </Routes>
+            {/* Area protegida */}
+            <Route path='/admin' element={<RutaProtegida />}>
+              <Route index element={<AdministrarPacientes />}/>
+            </Route>
+          </Routes>
+        </PacientesProvider>PacientesProvider
       </AuthProvider>
     </BrowserRouter>
   )
