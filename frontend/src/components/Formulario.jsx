@@ -33,11 +33,11 @@ export const Formulario = () => {
   const { msg } = alerta;
   return (
     <>
-      <p className='text-lg text-center mb-10'>
+      <h2 className='font-black text-3xl text-center'>Adminstrador de Pacientes</h2>
+      <p className='text-xl mt-5 mb-10 text-center'>
         Añade tus pacientes y {''}
         <span className='text-indigo-600 font-bold'>Administralos</span>
       </p>
-
       <form
         onSubmit={handleSubmit} 
         className='bg-white py-10 px-5 mb-10 lg:mb-5 shadow-md rounded-md'>
