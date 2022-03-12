@@ -20,7 +20,7 @@ export const PacientesProvider = ({children}) => {
         }
 
         const { data } = await clienteAxios.get('/pacientes', config);
-        console.log(data)
+        setPacientes(data)
       } catch (error) {
         console.log(error)
       }
