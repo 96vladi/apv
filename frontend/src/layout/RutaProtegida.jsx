@@ -10,14 +10,13 @@ import useAuth from '../hooks/useAuth'
 export const RutaProtegida = () => {
 
   const { auth, cargando } = useAuth();
-  const { perfil } = auth;
 
   if(cargando) return 'cargando...'
 
   return (
     <>
       <Header />
-      { perfil?._id ? (
+      { auth?._id ? (
         <main className='container mx-auto mt-10'>
           <Outlet />
         </main>
