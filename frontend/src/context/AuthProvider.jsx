@@ -35,6 +35,13 @@ const AuthProvider = ({children}) => {
     autenticarUsuario();
 
   }, [])
+
+  // Cerrar sesion
+
+  const cerrarSesion = () => {
+    localStorage.removeItem('token');
+    setAuth({});
+  };
   
 
   return(
@@ -42,7 +49,8 @@ const AuthProvider = ({children}) => {
       value={{
         auth,
         setAuth,
-        cargando
+        cargando,
+        cerrarSesion
       }}
     >
       {/* Todos los componentes dentro de router */}
