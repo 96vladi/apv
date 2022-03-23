@@ -70,7 +70,10 @@ const AuthProvider = ({children}) => {
       }
     }
   }
-  
+
+  const guardarPassword = async (datos) => {
+    console.log(datos)
+  };
 
   return(
     <AuthContext.Provider
@@ -79,7 +82,8 @@ const AuthProvider = ({children}) => {
         setAuth,
         cargando,
         cerrarSesion,
-        actualizarPerfil
+        actualizarPerfil,
+        guardarPassword
       }}
     >
       {/* Todos los componentes dentro de router */}
