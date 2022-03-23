@@ -42,6 +42,10 @@ const AuthProvider = ({children}) => {
     localStorage.removeItem('token');
     setAuth({});
   };
+
+  const actualizarPerfil = (datos) => {
+    console.log(datos)
+  }
   
 
   return(
@@ -50,7 +54,8 @@ const AuthProvider = ({children}) => {
         auth,
         setAuth,
         cargando,
-        cerrarSesion
+        cerrarSesion,
+        actualizarPerfil
       }}
     >
       {/* Todos los componentes dentro de router */}
