@@ -79,12 +79,14 @@ const autenticar = async (req, res) => {
   //Revisar el password
   if(await usuario.comprobarPassword(password)){
     // console.log('password correcto');
-    console.log(usuario)
+    // console.log(usuario)
     // usuario.token = generarJWT(usuario.id);
     res.json({
       _id: usuario._id,
       nombre: usuario.nombre,
       email: usuario.email,
+      telefono: usuario.phone,
+      web: usuario.web,
       token: generarJWT(usuario.id),
     })
   } else {
